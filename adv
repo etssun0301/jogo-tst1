@@ -1,0 +1,34 @@
+// Geração de um número aleatório entre 1 e 100
+const numeroAleatorio = Math.floor(Math.random() * 100) + 1;
+
+// Variáveis
+let tentativas = 0;
+let tentativa;
+
+// Função principal do jogo
+function jogo() {
+  // Pedir ao jogador para inserir um número
+  tentativa = parseInt(prompt("Adivinhe o número (entre 1 e 100):"));
+
+  // Verificar se o número é válido
+  if (tentativa < 1 || tentativa > 100 || isNaN(tentativa)) {
+    alert("Por favor, insira um número válido entre 1 e 100.");
+    return;
+  }
+
+  // Incrementar o número de tentativas
+  tentativas++;
+
+  // Verificar se o jogador adivinhou corretamente
+  if (tentativa === numeroAleatorio) {
+    alert(`Parabéns! Você acertou o número em ${tentativas} tentativas.`);
+  } else {
+    // Se não acertou, dar dicas ao jogador
+    let dica = tentativa < numeroAleatorio ? "maior" : "menor";
+    alert(`Tente novamente! O número que você precisa adivinhar é ${dica} do que o número inserido.`);
+    jogo(); // Chamar a função novamente para permitir mais tentativas
+  }
+}
+
+// Iniciar o jogo
+jogo();
